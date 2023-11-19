@@ -185,10 +185,12 @@ Token *getToken(void)
     {
       str[i] = str[i + count];
     }
+    // Đặt ký tự kết thúc chuỗi mới
     str[len - count] = '\0';
+    // End cắt số 0 ở đầu
+
     char int_max[MAX_IDENT_LEN];
     snprintf(int_max, sizeof(int_max), "%d", INT_MAX);
-    // End cắt số 0 ở đầu
     if (strlen(str) > 10)
     {
       error(ERR_NUMBERTOOLONG, lineNo, colNo);
@@ -201,7 +203,6 @@ Token *getToken(void)
       }
     }
 
-    // Đặt ký tự kết thúc chuỗi mới
     state = 8;
     return getToken();
   case 8:
