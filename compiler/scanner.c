@@ -201,13 +201,18 @@ Token *getToken(void)
       {
         error(ERR_NUMBERTOOLONG, lineNo, colNo);
       }
+      else
+      {
+        state = 8;
+        return getToken();
+      }
     }
 
-    state = 8;
+    state = 0;
     return getToken();
   case 8:
     token = makeToken(TK_NUMBER, ln, cn);
-    for (int i = 0; i < MAX_IDENT_LEN + 1; i++)
+    for (int i = 0; i < MAX_INT_LEN + 1; i++)
     {
       token->string[i] = str[i];
       if (str[i] == '\0')
